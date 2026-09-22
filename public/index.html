@@ -3,10 +3,173 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sergo Azizbekyan</title>
+  <title>Sergo Azizbekyan — Software & AI Engineer</title>
+  <meta name="description" content="Software & AI Engineer. 3+ years of production backend: FastAPI, Django, Docker, RAG, LLM integrations.">
+  <script>
+    // Apply saved theme before paint to avoid a flash.
+    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Sergo Azizbekyan</h1>
-  <p>Coming soon.</p>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="#top">SA<span>.</span></a>
+      <nav>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#open-source">Open Source</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <img class="avatar" src="photo.jpg" alt="Sergo Azizbekyan" width="200" height="200">
+      <div>
+        <p class="eyebrow">Hi, I'm</p>
+        <h1>Sergo Azizbekyan</h1>
+        <p class="role">Software &amp; AI Engineer</p>
+        <p class="print-only">sergo.azizbekyan@gmail.com · azizbekyan.online · github.com/Pro100Sergosha · linkedin.com/in/sergo-azizbekyan-8341a8307</p>
+        <p class="lead">Backend engineer with 3+ years in production. I lead engineering at Tarsai Systems and build across Python backends, AWS infrastructure and LLM integrations.</p>
+        <div class="actions">
+          <a class="btn primary" href="Sergo_Azizbekyan.pdf" download>Download CV</a>
+          <a class="btn" href="https://github.com/Pro100Sergosha" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/sergo-azizbekyan-8341a8307/" target="_blank" rel="noopener">LinkedIn</a>
+          <button class="btn copy" type="button" data-copy="sergo.azizbekyan@gmail.com" aria-label="Copy email address">sergo.azizbekyan@gmail.com <svg class="copy-icon" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="copy-status" role="status"></span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="wrap">
+      <h2>About</h2>
+      <p>I build backends that keep working when the things around them fail: third-party integrations isolated from core logic, retries and dead-letter queues, observability from the first deploy. I have taken a product from zero to production alone and led delivery in small teams. I work AI-first — agents write much of the code, while the design, the reviews and the trade-offs stay with me.</p>
+    </section>
+
+    <section id="experience" class="wrap">
+      <h2>Experience</h2>
+      <ol class="timeline">
+        <li>
+          <div class="job-head">
+            <h3>Engineering Team Lead, Head of Labs &amp; Development <span>· <a href="https://tarsaisystems.com" target="_blank" rel="noopener">Tarsai Systems</a></span></h3>
+            <time>Sep 2026 — Present</time>
+          </div>
+          <p class="job-desc">Founding team of an early-stage AI-native software company: client systems, AI integration, and a venture lab that takes new products from idea to production in weeks, with AI agents writing code and engineers owning every decision. First lab product: <a href="https://binadar.ge" target="_blank" rel="noopener">Binadar.ge</a>, which aggregates real-estate listings from myhome.ge, ss.ge and livo.ge and alerts agents when one matches a client's brief. Serverless AWS: Lambda, SQS, EventBridge, DynamoDB, Cognito, CDK; Astro + React frontend.</p>
+          <ul>
+            <li>Split the monolithic API Lambda into <strong>three functions by trust boundary</strong>, so a bug in a public handler no longer runs with the widest IAM rights in the system (account deletion, full-table writes).</li>
+            <li>Made manual filter runs <strong>asynchronous</strong> (<code>202 Accepted</code> + background worker) with per-caller rate limiting, lifting the 29-second API Gateway ceiling that capped manual runs below scheduled ones.</li>
+            <li>Designed a <strong>PaymentProvider port</strong> and a Keepz adapter built from the public docs before credentials existed; payment callbacks are treated as hints and every plan change is re-verified against the provider.</li>
+            <li>Built the <strong>account-wide match inbox</strong> on an existing index with no migration, moved state filtering server-side (fixing saved matches silently vanishing past the first page), and added numbered pagination in the frontend.</li>
+            <li>Restructured the monorepo into a shared core + per-service layout across <strong>8 services</strong>, unblocked production deploys broken by an AWS Lambda/SQS concurrency change, and added a human approval gate before production.</li>
+          </ul>
+        </li>
+        <li>
+          <div class="job-head">
+            <h3>Python Backend Developer <span>· Making Science</span></h3>
+            <time>Nov 2024 — Jun 2026</time>
+          </div>
+          <ul>
+            <li>Architected a <strong>9-service</strong> FastAPI backend behind APISIX with 5-tier rate limiting, handling up to <strong>100 req/s</strong>. A shared resilience library (circuit breaker, retry, bulkhead, DLQ) gives every service the same failure handling instead of each one reinventing it.</li>
+            <li>Built one integration layer for <strong>3 external providers</strong> — Keepz payments, Didit identity verification, Google OAuth — so an outage at any of them degrades a single feature, not the core flow.</li>
+            <li>Cut deploys from <strong>~30 to ~5 minutes</strong>: GitHub Actions detects which services changed and rebuilds only those.</li>
+            <li>Set up Grafana + Loki across all 9 services, so logs from every service are searched in one place during an incident.</li>
+            <li>Led delivery in a 2-person team: reviewed and merged <strong>58+ PRs</strong>, added RabbitMQ for async messaging and MinIO for file storage.</li>
+          </ul>
+        </li>
+        <li>
+          <div class="job-head">
+            <h3>Backend Developer <span>· Dealin</span></h3>
+            <time>Oct 2023 — Jun 2026</time>
+          </div>
+          <ul>
+            <li>Took the product from <strong>zero to production</strong> as the sole developer: <strong>25+ endpoints</strong> serving up to <strong>1,000 users</strong> on Django 6, DRF, PostgreSQL, Celery and Redis.</li>
+            <li>Shipped the full auth flow from day one: email verification, 2FA, password reset, JWT and Google OAuth.</li>
+            <li>Moved email delivery out of the request cycle into a Celery + Redis queue, so a slow mail server no longer holds up API responses.</li>
+            <li>Every push runs ruff, tests and a Docker build in GitHub Actions; the schema evolved through <strong>16 migrations</strong> with index tuning along the way.</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <section id="projects" class="wrap">
+      <h2>Projects</h2>
+      <div class="cards">
+        <a class="card" href="https://github.com/Pro100Sergosha/LangChain-Text-Analyzer" target="_blank" rel="noopener">
+          <h3>LangChain Text Analyzer</h3>
+          <p>Classifies topics, scores sentiment and answers questions about a text, using retrieval over Milvus and Google Gemini.</p>
+          <p class="tags">LangChain · Gemini · Milvus · FastAPI · SQLModel · Docker</p>
+        </a>
+        <a class="card" href="https://github.com/Pro100Sergosha/FastAPI-Webscraper" target="_blank" rel="noopener">
+          <h3>FastAPI WebScraper</h3>
+          <p>Scrapes JavaScript-heavy pages at ~200 pages per 2 minutes and turns them into structured Markdown ready for RAG and LLM pipelines, on a cron schedule.</p>
+          <p class="tags">FastAPI · nodriver · asyncio</p>
+        </a>
+        <a class="card" href="https://github.com/Pro100Sergosha/Fitness-Tracker-API" target="_blank" rel="noopener">
+          <h3>Fitness Tracker API</h3>
+          <p>REST API for workouts — exercises, plans, sessions and weight logs — fully covered with pytest.</p>
+          <p class="tags">Django · DRF · PostgreSQL · Docker · pytest</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="open-source" class="wrap">
+      <h2>Open Source</h2>
+      <a class="card" href="https://github.com/GiorgiTarsaidze/herdr-profiles/pull/4" target="_blank" rel="noopener">
+        <h3>herdr-profiles <span class="badge">PR #4 · open</span></h3>
+        <p>Added per-profile environment variables to Herdr's Chrome-style profiles, so each profile runs tools under its own account — for example Claude Code on a subscription in one and Vertex AI in another. Along the way, stopped a broken <code>profiles.json</code> from being silently overwritten, and added editing from the popup and Windows Terminal support under WSL.</p>
+        <p class="tags">Rust · +405 / −39 · 36 tests · clippy clean</p>
+      </a>
+    </section>
+
+    <section id="skills" class="wrap">
+      <h2>Skills</h2>
+      <dl class="skills">
+        <dt>Backend</dt><dd>Python, FastAPI, Django, DRF, SQLAlchemy, SQLModel, Alembic, Celery, asyncio</dd>
+        <dt>Data &amp; Messaging</dt><dd>PostgreSQL, Redis, RabbitMQ, Milvus, MinIO</dd>
+        <dt>AI</dt><dd>RAG, LangChain, Google Gemini, Anthropic Claude API, LLM APIs, Embeddings</dd>
+        <dt>DevOps &amp; Cloud</dt><dd>Docker, GCP, AWS (EC2, AuroraDB, S3, Serverless, ElastiCache, Bedrock), GitHub Actions, CI/CD, APISIX, Nginx, Linux, Grafana, Loki</dd>
+        <dt>Tooling</dt><dd>pytest, ruff, uv, Git, Swagger, ReDoc, nodriver, BeautifulSoup4, Claude Code, Copilot, Codex</dd>
+      </dl>
+    </section>
+
+    <section id="education" class="wrap">
+      <h2>Education &amp; Certifications</h2>
+      <ul class="edu">
+        <li><h3>Python Backend Development</h3><span>AlgoUni · Feb — Sep 2023</span></li>
+        <li><h3>Information Technology</h3><span>Imedi College · May 2022 — Jan 2023</span></li>
+        <li><h3>Complete Guide to Parallel and Concurrent Programming in Python; SQL Essential Training; LLM Foundations: Vector Databases for Caching and RAG</h3><span>LinkedIn Learning</span></li>
+      </ul>
+    </section>
+
+    <section id="contact" class="wrap contact">
+      <h2>Let's talk</h2>
+      <button class="btn primary copy" type="button" data-copy="sergo.azizbekyan@gmail.com" aria-label="Copy email address">sergo.azizbekyan@gmail.com <svg class="copy-icon" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="copy-status" role="status"></span></button>
+    </section>
+  </main>
+
+  <footer class="wrap footer">© 2026 Sergo Azizbekyan</footer>
+
+  <script>
+    document.querySelectorAll('[data-copy]').forEach((btn) => btn.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(btn.dataset.copy); } catch (e) { return; }
+      btn.classList.add('copied');
+      btn.querySelector('.copy-status').textContent = 'Copied';
+      setTimeout(() => { btn.classList.remove('copied'); btn.querySelector('.copy-status').textContent = ''; }, 1500);
+    }));
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const root = document.documentElement;
+      const current = root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      const next = current === 'light' ? 'dark' : 'light';
+      root.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  </script>
 </body>
 </html>
