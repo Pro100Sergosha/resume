@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sergo Azizbekyan — Software & AI Engineer</title>
   <meta name="description" content="Software & AI Engineer. 3+ years of production backend: FastAPI, Django, Docker, RAG, LLM integrations.">
+  <link rel="canonical" href="https://sergo.azizbekyan.online/">
   <script>
+    // Send old hosts to the canonical domain, keeping the path. file:// (PDF build) has no hostname, so it is skipped.
+    if (/(^|\.)azizbekyan\.online$|\.web\.app$|\.firebaseapp\.com$/.test(location.hostname) && location.hostname !== 'sergo.azizbekyan.online')
+      location.replace('https://sergo.azizbekyan.online' + location.pathname + location.search + location.hash);
     // Apply saved theme before paint to avoid a flash.
     try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   </script>
@@ -37,7 +41,7 @@
         <p class="eyebrow">Hi, I'm</p>
         <h1>Sergo Azizbekyan</h1>
         <p class="role">Software &amp; AI Engineer</p>
-        <p class="print-only">sergo.azizbekyan@gmail.com · azizbekyan.online · github.com/Pro100Sergosha · linkedin.com/in/sergo-azizbekyan-8341a8307</p>
+        <p class="print-only">sergo.azizbekyan@gmail.com · sergo.azizbekyan.online · github.com/Pro100Sergosha · linkedin.com/in/sergo-azizbekyan-8341a8307</p>
         <p class="lead">Backend engineer with 3+ years in production. I lead engineering at Tarsai Systems and build across Python backends, AWS infrastructure and LLM integrations.</p>
         <div class="actions">
           <a class="btn primary" href="Sergo_Azizbekyan.pdf" download>Download CV</a>
@@ -58,7 +62,7 @@
       <ol class="timeline">
         <li>
           <div class="job-head">
-            <h3>Engineering Team Lead, Head of Labs &amp; Development <span>· <a href="https://tarsaisystems.com" target="_blank" rel="noopener">Tarsai Systems</a></span></h3>
+            <h3>Software &amp; AI Engineer <span>· <a href="https://tarsaisystems.com" target="_blank" rel="noopener">Tarsai Systems</a></span></h3>
             <time>Sep 2026 — Present</time>
           </div>
           <p class="job-desc">Founding team of an early-stage AI-native software company: client systems, AI integration, and a venture lab that takes new products from idea to production in weeks, with AI agents writing code and engineers owning every decision. First lab product: <a href="https://binadar.ge" target="_blank" rel="noopener">Binadar.ge</a>, which aggregates real-estate listings from myhome.ge, ss.ge and livo.ge and alerts agents when one matches a client's brief. Serverless AWS: Lambda, SQS, EventBridge, DynamoDB, Cognito, CDK; Astro + React frontend.</p>
