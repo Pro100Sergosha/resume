@@ -20,6 +20,8 @@ execFileSync(chrome, [
   '--headless=new',
   '--disable-gpu',
   '--no-pdf-header-footer',
+  // Keep PDF builds out of the visitor stats.
+  '--host-resolver-rules=MAP static.cloudflareinsights.com 0.0.0.0',
   '--virtual-time-budget=10000', // let Google Fonts load before printing
   `--print-to-pdf=${out}`,
   pathToFileURL(root + 'index.html').href,
